@@ -97,6 +97,7 @@
     options = $.extend({}, defaults, options);
 
     var promises    = [];
+    var originalel  = this;
     var $el         = $(this);
     var $nodes      = $el.find(options.selector);
     var $clone      = $el.clone(true, true);
@@ -181,6 +182,7 @@
     return promise.done(function () {
       // Remove 'absolute' styles
       $unfix.call($el.find(options.selector));
+      callback.call(originalel, originalel, options);
     });
   };
 
